@@ -2,10 +2,10 @@ export interface Employee{
     id: number;
     name: string;
     position: string;
-  department: string;
-  email: string;
-  phone: string;
-  branchId: number;
+    department: string;
+    email: string;
+    phone: string;
+    branchId: number;
 }
 
 export const employees: Employee[] = [
