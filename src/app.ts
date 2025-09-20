@@ -1,5 +1,6 @@
 import express, {Request, Response, Express } from "express";
 import morgan from "morgan";
+import employeeRoutes from "./api/v1/routes/employeeRoutes";  
 
 const app: Express = express();
 
@@ -10,5 +11,7 @@ app.use(morgan("combined"));
 app.get("/health", (_req: Request, res: Response) => {
   res.status(200).send("Server is healthy");
 });
+
+app.use("/api/v1/employee", employeeRoutes)
 
 export default app;
