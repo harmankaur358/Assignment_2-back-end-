@@ -1,3 +1,4 @@
+//Ikmport Statements
 import { Request, Response } from "express";
 import * as employeeService from "../services/employeeService";
 
@@ -9,7 +10,7 @@ export const createEmployee = (req: Request, res: Response) => {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  const message = employeeService.createEmployee({
+  const {message, id} = employeeService.createEmployee({
     name,
     position,
     department,
@@ -18,11 +19,11 @@ export const createEmployee = (req: Request, res: Response) => {
     branchId,
   });
 
-  res.status(201).json({ message });
+  res.status(201).json({ message, id });
 };
 
 // Get all employees
-export const getAllEmployees = (_: Request, res: Response) => {
+export const getAllEmployees = (_req: Request, res: Response) => {
   res.json(employeeService.getAllEmployees());
 };
 

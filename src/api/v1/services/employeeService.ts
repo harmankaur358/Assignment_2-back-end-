@@ -1,13 +1,15 @@
+//Import statements
 import { employees, Employee } from "../../../data/employees";
 
+//Function for getting all empolyees
 export const getAllEmployees = (): Employee[] => employees;
 
-// Get employee by ID
+//Function for getting employee by id 
 export const getEmployeeById = (id: number): Employee | undefined =>
   employees.find((e) => e.id === id);
 
-// Create employee 
-export const createEmployee = (data: Omit<Employee, "id">): string => {
+// Create employee function
+export const createEmployee = (data: Omit<Employee, "id">): { message: string; id: number } => {
   const newId =
     employees.length > 0
       ? Math.max(...employees.map((e) => e.id)) + 1
@@ -16,10 +18,10 @@ export const createEmployee = (data: Omit<Employee, "id">): string => {
   const newEmployee: Employee = { id: newId, ...data };
   employees.push(newEmployee);
 
-  return `Employee added with id ${newId}`;
+  return { message: "Employee added successfully", id: newId };
 };
 
-// Update employee
+// Update employee Function
 export const updateEmployee = (
   id: number,
   updates: Partial<Omit<Employee, "id">>
@@ -31,7 +33,7 @@ export const updateEmployee = (
   return "Employee updated";
 };
 
-// Delete employee
+// Delete employee Function
 export const deleteEmployee = (id: number): string => {
   const index = employees.findIndex((e) => e.id === id);
   if (index === -1) return "Employee not found";
