@@ -1,3 +1,4 @@
+//Import statements
 import { Router } from "express";
 import {
   createEmployee,
@@ -9,19 +10,19 @@ import {
 
 const router = Router();
 
-//  Create employee
+//Create a new employee
 router.post("/", createEmployee);
 
-// Get all employees
+//Get all employees
 router.get("/", getAllEmployees);
 
-//  Get employee by ID
+// Get a specific employee with id
 router.get("/:id", getEmployeeById);
 
-//  Update employee
+//Update an employee info
 router.put("/:id", updateEmployee);
 
-//  Delete employee
+//Delete a employee
 router.delete("/:id", deleteEmployee);
 
 export default router;
