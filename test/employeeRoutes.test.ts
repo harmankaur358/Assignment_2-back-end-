@@ -125,4 +125,54 @@ describe("Employee Routes", () => {
     expect(res.status).toBe(400);
     expect(res.body.error).toBe("Invalid employee ID");
   });
+  
+  // return all employees for provided valid id
+  it("return all employees for a valid branch ID", async () => {
+    // Arrange
+    const branchId = 1;
+
+    // Act
+    const res = await request(app).get(`/api/v1/employee/branch/${branchId}`);
+
+    // Assert
+    expect(res.status).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
+    res.body.forEach((emp: any) => expect(emp.branchId).toBe(branchId));
+  });
+  
+  //return an error if provided id is missing
+  it("return 400 if branch ID is missing", async () => {
+    // Arrange & Act
+    const res = await request(app).get(`/api/v1/employee/branch/`);
+
+    // Assert
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBeDefined();
+  });
+
+  // return all employees of provided department
+  it("return all employees for a valid department", async () => {
+    // Arrange
+    const department = "IT";
+
+    // Act
+    const res = await request(app).get(`/api/v1/employee/department/${department}`);
+
+    // Assert
+    expect(res.status).toBe(200);
+    expect(Array.isArray(res.body)).toBe(true);
+    res.body.forEach((emp: any) => expect(emp.department.toLowerCase()).toBe(department.toLowerCase()));
+  });
+
+  // return error when department is missing
+  it("return 400 if department parameter is missing", async () => {
+    // Arrange & Act
+    const res = await request(app).get(`/api/v1/employee/department/`);
+
+    // Assert
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBeDefined();
+  });
 });
+
+
