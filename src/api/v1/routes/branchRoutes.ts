@@ -1,28 +1,28 @@
 //Import statements
 import { Router } from "express";
 import {
-  createBranch,
-  getAllBranches,
-  getBranchById,
-  updateBranch,
-  deleteBranch,
+  getBranches,
+ getaBranch,
+  CreateBranch,
+  editBranch,
+  DeleteBranch
 } from "../controllers/branchController";
 
 const router = Router();
 
 //Create a new Branch
-router.post("/", createBranch);
+router.post("/", CreateBranch);
 
 //Get all Branches
-router.get("/", getAllBranches);
+router.get("/", getBranches);
 
 // Get a specific branch with id
-router.get("/:id", getBranchById);
+router.get("/:id", getaBranch);
 
 //Update an branch info
-router.put("/:id", updateBranch);
+router.put("/:id", editBranch);
 
 //Delete a branch
-router.delete("/:id", deleteBranch);
+router.delete("/:id", DeleteBranch);
 
 export default router;
