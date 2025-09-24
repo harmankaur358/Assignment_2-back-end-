@@ -23,7 +23,7 @@ export const createEmployee = (req: Request, res: Response) => {
 };
 
 // Get all employees
-export const getAllEmployees = (_req: Request, res: Response) => {
+export const getAllEmployees = (_: Request, res: Response) => {
   res.json(employeeService.getAllEmployees());
 };
 

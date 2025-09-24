@@ -22,6 +22,6 @@ app.get("/health", (_req: Request, res: Response) => {
 app.use("/api/v1/employee", employeeRoutes)
 
 //Branch endpoint
-app.use("api/v1/branch", branchRoutes)
+app.use("/api/v1/branch", branchRoutes)
 
 export default app;
