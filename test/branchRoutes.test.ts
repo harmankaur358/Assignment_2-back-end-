@@ -30,7 +30,7 @@ describe("Branch Routes", () => {
     expect(res.body.error).toBeDefined();
   });
 
-  // Getting all branch test
+  // test for getting all branch 
   it("return all branches", async () => {
     // Arrange & Act
     const res = await request(app).get("/api/v1/branch");
@@ -40,7 +40,7 @@ describe("Branch Routes", () => {
     expect(Array.isArray(res.body)).toBe(true);
   });
 
-  // Getting a branch by id test
+  //Test for getting a branch by id 
   it("return a branch by Id", async () => {
     // Arrange
     const branchId = 1;
@@ -65,7 +65,7 @@ describe("Branch Routes", () => {
     expect(res.status).toBe(404);
   });
 
-  // Update a branch test
+  // test for Updating a branch
   it("update branch details", async () => {
     // Arrange
     const branchId = 1;
