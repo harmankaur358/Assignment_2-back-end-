@@ -77,8 +77,8 @@ export const getEmployeesByBranch = (req: Request, res: Response) => {
     return res.status(400).json({ error: "Please provide a valid ID." });
   }
 
-  const result = employeeService.getEmployeesByBranch(branchId);
-  res.status(200).json(result);
+  const finalresult = employeeService.getEmployeesByBranch(branchId);
+  res.status(200).json(finalresult);
 };
 
 // Get employees by department
@@ -88,6 +88,6 @@ export const getEmployeesByDepartment = (req: Request, res: Response) => {
     return res.status(400).json({ error: "Department is required field." });
   }
 
-  const result = employeeService.getEmployeesByDepartment(department);
-  res.status(200).json(result);
+  const finalresult = employeeService.getEmployeesByDepartment(department);
+  res.status(200).json(finalresult);
 };
