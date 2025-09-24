@@ -41,3 +41,15 @@ export const deleteEmployee = (id: number): string => {
   employees.splice(index, 1);
   return "Employee deleted";
 };
+
+//Get all employees for a branch
+export const getEmployeesByBranch = (branchId: number): Employee[] => {
+  return employees.filter((e) => e.branchId === branchId);
+};
+
+//Get all employees by department
+export const getEmployeesByDepartment = (department: string): Employee[] => {
+  return employees.filter(
+    (e) => e.department.toLowerCase() === department.toLowerCase()
+  );
+};

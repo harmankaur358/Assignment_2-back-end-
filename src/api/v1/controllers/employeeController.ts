@@ -69,3 +69,20 @@ export const deleteEmployee = (req: Request, res: Response) => {
 
   res.json({ message: result });
 };
+// Get all employees for a branch
+export const getEmployeesByBranch = (req: Request, res: Response) => {
+  const branchId = Number(req.params.branchId);
+  if (isNaN(branchId)) return res.status(400).json({ error: "Invalid branch ID" });
+
+  const result = employees.filter(e => e.branchId === branchId);
+  res.status(200).json(result);
+};
+
+// Get all employees by department
+export const getEmployeesByDepartment = (req: Request, res: Response) => {
+  const { department } = req.params;
+  if (!department) return res.status(400).json({ error: "Department is required" });
+
+  const result = employees.filter(e => e.department.toLowerCase() === department.toLowerCase());
+  res.status(200).json(result);
+};
