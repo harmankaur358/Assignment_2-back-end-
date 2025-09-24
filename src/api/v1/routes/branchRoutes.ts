@@ -19,7 +19,7 @@ router.get("/", getBranches);
 // Get a specific branch with id
 router.get("/:id", getaBranch);
 
-//Update an branch info
+//Update an branch 
 router.put("/:id", editBranch);
 
 //Delete a branch
