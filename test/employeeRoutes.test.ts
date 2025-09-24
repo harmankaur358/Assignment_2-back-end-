@@ -37,7 +37,7 @@ describe("Employee Routes", () => {
     expect(res.body.error).toBe("Missing required fields");
   });
 
-  // Getting all employees
+  // Test for Getting all employees
   it("return all employees successfully", async () => {
     // Arrange & Act
     const res = await request(app).get("/api/v1/employee");
@@ -47,7 +47,7 @@ describe("Employee Routes", () => {
     expect(Array.isArray(res.body)).toBe(true);
   });
 
-  // Getting a employee by id test
+  // Test for Getting a employee by id 
   it("return an employee by ID successfully", async () => {
     // Arrange
     const employeeId = 1;
@@ -100,7 +100,7 @@ describe("Employee Routes", () => {
     expect(res.body.error).toBe("Invalid employee ID");
   });
 
-  // Deleting a employee
+  // test for Deleting a employee
   it("delete an employee successfully", async () => {
     // Arrange
     const employeeId = 1;
