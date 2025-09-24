@@ -4,10 +4,10 @@ import {branches, Branch} from "../../../data/branches";
 //Next id by adding 1 in length
 let nextId = branches.length + 1;
 
-//GetAllBranches function
+//GetAllBranches 
 export const getAllBranches = (): Branch[] => branches;
 
-// Function for getting branch by id
+// Getting branch by id
 export const getBranchById = (id: number): Branch | undefined =>
   branches.find((b) => b.id === id);
 
