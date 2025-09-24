@@ -25,6 +25,12 @@ router.put("/:id", updateEmployee);
 //Delete a employee
 router.delete("/:id", deleteEmployee);
 
+//Get all employees for branch
+router.get("/branch/:branchId" )
+
+//Get all employees by department
+router.get("/department/:department")
+
 export default router;
 
 
