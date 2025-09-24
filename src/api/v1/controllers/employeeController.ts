@@ -69,20 +69,25 @@ export const deleteEmployee = (req: Request, res: Response) => {
 
   res.json({ message: result });
 };
-// Get all employees for a branch
+
+// Get employees by branch
 export const getEmployeesByBranch = (req: Request, res: Response) => {
   const branchId = Number(req.params.branchId);
-  if (isNaN(branchId)) return res.status(400).json({ error: "Invalid branch ID" });
+  if (isNaN(branchId)) {
+    return res.status(400).json({ error: "Please provide a valid ID." });
+  }
 
-  const result = employees.filter(e => e.branchId === branchId);
+  const result = employeeService.getEmployeesByBranch(branchId);
   res.status(200).json(result);
 };
 
-// Get all employees by department
+// Get employees by department
 export const getEmployeesByDepartment = (req: Request, res: Response) => {
   const { department } = req.params;
-  if (!department) return res.status(400).json({ error: "Department is required" });
+  if (!department) {
+    return res.status(400).json({ error: "Department is required field." });
+  }
 
-  const result = employees.filter(e => e.department.toLowerCase() === department.toLowerCase());
+  const result = employeeService.getEmployeesByDepartment(department);
   res.status(200).json(result);
 };
