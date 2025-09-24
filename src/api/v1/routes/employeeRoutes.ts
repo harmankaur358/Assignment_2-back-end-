@@ -21,7 +21,7 @@ router.get("/", getAllEmployees);
 // Get a specific employee with id
 router.get("/:id", getEmployeeById);
 
-//Update an employee info
+//Update an employee 
 router.put("/:id", updateEmployee);
 
 //Delete a employee
