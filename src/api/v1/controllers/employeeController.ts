@@ -70,7 +70,7 @@ export const deleteEmployee = (req: Request, res: Response) => {
   res.json({ message: result });
 };
 
-// Get employees by branch
+// Get employees by branch id 
 export const getEmployeesByBranch = (req: Request, res: Response) => {
   const branchId = Number(req.params.branchId);
   if (isNaN(branchId)) {
