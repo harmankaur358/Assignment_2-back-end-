@@ -9,11 +9,13 @@ import {
   getEmployeesByBranch,
   getEmployeesByDepartment
 } from "../controllers/employeeController";
+import { validate} from "../middleware/validation";
+import { employeeSchema, employeeidSchema } from "../validation/employeeValidaton";
 
 const router = Router();
 
 //Create a new employee
-router.post("/", createEmployee);
+router.post("/",validate(employeeSchema), createEmployee);
 
 //Get all employees
 router.get("/", getAllEmployees);
@@ -22,10 +24,10 @@ router.get("/", getAllEmployees);
 router.get("/:id", getEmployeeById);
 
 //Update an employee 
-router.put("/:id", updateEmployee);
+router.put("/:id",validate(employeeSchema), updateEmployee);
 
 //Delete a employee
-router.delete("/:id", deleteEmployee);
+router.delete("/:id",validate(employeeidSchema), deleteEmployee);
 
 //Get all employees for branch
 router.get("/branch/:branchId", getEmployeesByBranch )
