@@ -10,12 +10,12 @@ import {
   getEmployeesByDepartment
 } from "../controllers/employeeController";
 import { validate} from "../middleware/validation";
-import { employeeSchema, employeeidSchema } from "../validation/employeeValidaton";
+import { createemployeeSchema, employeeidSchema, updateemployeeSchema } from "../validation/employeeValidaton";
 
 const router = Router();
 
 //Create a new employee
-router.post("/",validate(employeeSchema), createEmployee);
+router.post("/",validate(createemployeeSchema), createEmployee);
 
 //Get all employees
 router.get("/", getAllEmployees);
@@ -24,7 +24,7 @@ router.get("/", getAllEmployees);
 router.get("/:id", getEmployeeById);
 
 //Update an employee 
-router.put("/:id",validate(employeeSchema), updateEmployee);
+router.put("/:id",validate(updateemployeeSchema), updateEmployee);
 
 //Delete a employee
 router.delete("/:id",validate(employeeidSchema), deleteEmployee);
