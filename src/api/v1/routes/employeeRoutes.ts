@@ -15,7 +15,7 @@ import { createemployeeSchema, employeeidSchema, updateemployeeSchema } from "..
 const router = Router();
 
 //Create a new employee
-router.post("/",validate(createemployeeSchema), createEmployee);
+router.post("/",validate(createemployeeSchema, "body"), createEmployee);
 
 //Get all employees
 router.get("/", getAllEmployees);
@@ -24,10 +24,10 @@ router.get("/", getAllEmployees);
 router.get("/:id", getEmployeeById);
 
 //Update an employee 
-router.put("/:id",validate(updateemployeeSchema), updateEmployee);
+router.put("/:id",validate(updateemployeeSchema, "body"), updateEmployee);
 
 //Delete a employee
-router.delete("/:id",validate(employeeidSchema), deleteEmployee);
+router.delete("/:id",validate(employeeidSchema, "params"), deleteEmployee);
 
 //Get all employees for branch
 router.get("/branch/:branchId", getEmployeesByBranch )

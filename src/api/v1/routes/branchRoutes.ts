@@ -13,7 +13,7 @@ import { createbranchSchema, branchidSchema, updatebranchSchema } from "../valid
 const router = Router();
 
 //Create a new Branch
-router.post("/",validate( createbranchSchema), CreateBranch);
+router.post("/",validate( createbranchSchema, "body"), CreateBranch);
 
 //Get all Branches
 router.get("/", getBranches);
@@ -22,9 +22,9 @@ router.get("/", getBranches);
 router.get("/:id", getaBranch);
 
 //Update an branch 
-router.put("/:id",validate(updatebranchSchema), editBranch);
+router.put("/:id",validate(updatebranchSchema, "body"), editBranch);
 
 //Delete a branch
-router.delete("/:id", validate(branchidSchema), DeleteBranch);
+router.delete("/:id", validate(branchidSchema, "params"), DeleteBranch);
 
 export default router;
