@@ -19,7 +19,7 @@ router.post("/",validate( createbranchSchema, "body"), CreateBranch);
 router.get("/", getBranches);
 
 // Get a specific branch with id
-router.get("/:id", getaBranch);
+router.get("/:id", validate(branchidSchema, "params"),getaBranch);
 
 //Update an branch 
 router.put("/:id",validate(updatebranchSchema, "body"), editBranch);

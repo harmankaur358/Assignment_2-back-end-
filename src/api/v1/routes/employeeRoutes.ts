@@ -21,7 +21,7 @@ router.post("/",validate(createemployeeSchema, "body"), createEmployee);
 router.get("/", getAllEmployees);
 
 // Get a specific employee with id
-router.get("/:id", getEmployeeById);
+router.get("/:id",validate(employeeidSchema, "params"), getEmployeeById);
 
 //Update an employee 
 router.put("/:id",validate(updateemployeeSchema, "body"), updateEmployee);
