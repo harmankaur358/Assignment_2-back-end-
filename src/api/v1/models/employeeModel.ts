@@ -1,4 +1,4 @@
-//Employee Model
+//Employee data Model
 export interface Employee{
     id: number;
     name: string;

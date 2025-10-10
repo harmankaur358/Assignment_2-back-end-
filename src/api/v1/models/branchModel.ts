@@ -1,3 +1,4 @@
+//Branch data Model
 export interface Branch{
     id: number;
     name: string;
