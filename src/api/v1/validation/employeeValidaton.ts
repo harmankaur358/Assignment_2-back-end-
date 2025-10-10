@@ -18,7 +18,7 @@ export const updateemployeeSchema = Joi.object({
   department: Joi.string().min(2).max(45),
   phone: Joi.string().pattern(/^[0-9\-() ]{10,20}$/),
   email: Joi.string().email(),
-  branchId: Joi.number().integer(),
+  branchId: Joi.number().integer()
 });
 
 export const employeeidSchema = Joi.object({

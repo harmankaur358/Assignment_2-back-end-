@@ -12,7 +12,6 @@ export const validate = (schema: Joi.ObjectSchema, source: "body" | "params" = "
         details: error.details.map((d) => d.message),
       });
     }
-
     next();
   };
 };

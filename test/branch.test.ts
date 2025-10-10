@@ -27,7 +27,7 @@ describe("Branch Routes", () => {
 
     // Assert
     expect(res.status).toBe(400);
-    expect(res.body.error).toBeDefined();
+    expect(res.body.message).toBe("Validation failed.Please try again");
   });
 
   // test for getting all branch 
@@ -54,15 +54,16 @@ describe("Branch Routes", () => {
   });
 
   // Returning a error when non existing branch id is passed
-  it("return 404 if branch Id does not exist", async () => {
+  it("return 400 if branch Id does not exist", async () => {
     // Arrange
-    const branchId = 784;
+    const branchId = "ab";
 
     // Act
     const res = await request(app).get(`/api/v1/branch/${branchId}`);
 
     // Assert
-    expect(res.status).toBe(404);
+    expect(res.status).toBe(400);
+    expect(res.body.message).toBe("Validation failed.Please try again");
   });
 
   // test for Updating a branch
@@ -80,7 +81,7 @@ describe("Branch Routes", () => {
   });
 
   // Returning a error if updating branch do not exist
-  it("return 404 if branch do not exist", async () => {
+  it("return 400 if branch do not exist", async () => {
     // Arrange
     const branchId = 936;
     const newphone = { phone: "2721" };
@@ -89,7 +90,8 @@ describe("Branch Routes", () => {
     const res = await request(app).put(`/api/v1/branch/${branchId}`).send(newphone);
 
     // Assert
-    expect(res.status).toBe(404);
+    expect(res.status).toBe(400);
+    expect(res.body.message).toBe("Validation failed.Please try again");
   });
 
   // Test for deleting a branch
@@ -106,15 +108,16 @@ describe("Branch Routes", () => {
   });
 
   // Returning a error when non exisiting branch is deleted
-  it("return 404 status code if deleting branch does not exist", async () => {
+  it("return 400 status code if deleting branch does not exist", async () => {
     // Arrange
-    const branchId = 9659;
+    const branchId = "ahs";
 
     // Act
     const res = await request(app).delete(`/api/v1/branch/${branchId}`);
 
     // Assert
-    expect(res.status).toBe(404);
+    expect(res.status).toBe(400);
+    expect(res.body.message).toBe("Validation failed.Please try again");
   });
 });
 

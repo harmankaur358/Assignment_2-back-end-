@@ -33,7 +33,7 @@ router.delete("/:id",validate(employeeidSchema, "params"), deleteEmployee);
 router.get("/branch/:branchId", getEmployeesByBranch )
 
 //Get all employees by department
-router.get("/department/:department", getEmployeesByDepartment)
+router.get("/department/:department",getEmployeesByDepartment)
 
 export default router;
 

@@ -34,7 +34,7 @@ describe("Employee Routes", () => {
 
     // Assert
     expect(res.status).toBe(400);
-    expect(res.body.error).toBe("Missing required fields");
+    expect(res.body.message).toBe("Validation failed.Please try again");
   });
 
   // Test for Getting all employees
@@ -70,7 +70,7 @@ describe("Employee Routes", () => {
 
     // Assert
     expect(res.status).toBe(400);
-    expect(res.body.error).toBe("Invalid employee ID");
+    expect(res.body.message).toBe("Validation failed.Please try again");
   });
 
   // Updating a employee that exist
@@ -97,7 +97,7 @@ describe("Employee Routes", () => {
 
     // Assert
     expect(res.status).toBe(400);
-    expect(res.body.error).toBe("Invalid employee ID");
+    expect(res.body.message).toBe("Validation failed.Please try again");
   });
 
   // test for Deleting a employee
@@ -123,7 +123,7 @@ describe("Employee Routes", () => {
 
     // Assert
     expect(res.status).toBe(400);
-    expect(res.body.error).toBe("Invalid employee ID");
+    expect(res.body.message).toBe("Validation failed.Please try again");
   });
   
   // return all employees for provided valid id
@@ -147,7 +147,7 @@ describe("Employee Routes", () => {
 
     // Assert
     expect(res.status).toBe(400);
-    expect(res.body.error).toBeDefined();
+    expect(res.body.message).toBe("Validation failed.Please try again");
   });
 
   // return all employees of provided department
@@ -171,10 +171,9 @@ describe("Employee Routes", () => {
 
     // Assert
     expect(res.status).toBe(400);
-    expect(res.body.error).toBeDefined();
+    expect(res.body.message).toBe("Validation failed.Please try again");
   });
 
-  //
 });
 
 
