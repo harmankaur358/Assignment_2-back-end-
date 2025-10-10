@@ -1,5 +1,5 @@
 //Import Statements
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import {
   getAllBranches,
   getBranchById,
@@ -7,50 +7,89 @@ import {
   updateBranch,
   deleteBranch,
 } from "../services/branchService";
+import { successResponse, errorResponse } from "../models/responseModel";
  
 // Get all branches
-export const getBranches = (_req: Request, res: Response) => {
-  res.json(getAllBranches());
+export const getBranches = async (_req: Request, res: Response, next:NextFunction) => {
+  try{
+  const branches =  await getAllBranches();
+  res.status(200).json(successResponse(branches));
+  }
+  catch(error: unknown) {
+    next(error);
+  }
 };
  
 //Get a specific branch
-export const getaBranch = (req: Request, res: Response) => {
+export const getaBranch = async (req: Request, res: Response, next: NextFunction) => {
+  try{
   const id = Number(req.params.id);
-  const branch = getBranchById(id);
+  if (isNaN(id)) {
+  return res.status(400).json(errorResponse("Invalid branch ID"));}
+
+  const branch =  await getBranchById(id);
  
-  if (!branch) return res.status(404).json({ error: "Branch not found" });
+  if (!branch) return res.status(404).json(errorResponse("Branch not found"));
  
-  res.json(branch);
+  return res.status(200).json(successResponse(branch));
+  }
+  catch(error: unknown) {
+    next(error);
+  }
+
 };
  
 // Create a branch
-export const CreateBranch = (req: Request, res: Response) => {
+export const CreateBranch = async (req: Request, res: Response,next:NextFunction) => {
+  try{
   const { name, address, phone } = req.body;
   if (!name || !address || !phone) {
-    return res.status(400).json({ error: "Missing required fields" });
+    return res.status(400).json(errorResponse("Missing required fields"));
   }
  
-  const branch = createBranch({ name, address, phone });
-  res.status(201).json(branch);
+  const branch =  await createBranch({ name, address, phone });
+  res.status(201).json(successResponse(branch));
+  }
+  catch(error: unknown) {
+    next(error);
+  }
 };
  
 //Updating an existing branch
-export const editBranch = (req: Request, res: Response) => {
+export const editBranch = async(req: Request, res: Response,next: NextFunction) => {
+  try{
   const id = Number(req.params.id);
-  const branch = updateBranch(id, req.body);
+  if (isNaN(id)) {
+  return res.status(400).json(errorResponse("Invalid branch ID"));
+  }
+
+  const branch = await updateBranch(id, req.body);
  
-  if (!branch) return res.status(404).json({ error: "Branch not found" });
+  if (!branch) return res.status(404).json(errorResponse("Branch not found"));
  
-  res.json(branch);
+  res.status(200).json(successResponse(branch));
+  }
+  catch(error: unknown) {
+    next(error);
+  }
 };
  
 //Delete a branch
-export const DeleteBranch = (req: Request, res: Response) => {
+export const DeleteBranch = async (req: Request, res: Response, next: NextFunction) => {
+  try{
   const id = Number(req.params.id);
-  const success = deleteBranch(id);
+  if (isNaN(id)) {
+  return res.status(400).json(errorResponse("Invalid branch ID"));
+  }
+
+  const success =  await deleteBranch(id);
  
-  if (!success) return res.status(404).json({ error: "Branch not found" });
+  if (!success) return res.status(404).json(errorResponse("Branch not found"));
  
-  res.json({ message: "Branch deleted successfully" });
+  res.status(200).json(successResponse(success));
+  }
+  catch(error: unknown) {
+    next(error);
+  }
 };
  
