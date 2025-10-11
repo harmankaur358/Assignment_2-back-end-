@@ -1,2 +1,4 @@
 node_modules/
 dist/
+firebase_key.json
+
