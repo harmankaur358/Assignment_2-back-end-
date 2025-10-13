@@ -21,7 +21,7 @@ describe("Employee Routes", () => {
     // Assert
     expect(res.status).toBe(201);
     expect(res.body.message).toEqual("Employee added successfully");
-    expect(res.body.id).toBeGreaterThan(0);
+    expect(res.body.data.id).toBeGreaterThan(0);
   });
 
   // Returning a error when employee with missing field is created
@@ -44,7 +44,7 @@ describe("Employee Routes", () => {
 
     // Assert
     expect(res.status).toBe(200);
-    expect(Array.isArray(res.body)).toBe(true);
+    expect(Array.isArray(res.body.data)).toBe(true);
   });
 
   // Test for Getting a employee by id 
@@ -57,7 +57,7 @@ describe("Employee Routes", () => {
 
     // Assert
     expect(res.status).toBe(200);
-    expect(res.body.id).toBe(employeeId);
+    expect(res.body.data.id).toBe(employeeId);
   });
 
   // Returning error when non existing id is passed
@@ -136,8 +136,8 @@ describe("Employee Routes", () => {
 
     // Assert
     expect(res.status).toBe(200);
-    expect(Array.isArray(res.body)).toBe(true);
-    res.body.forEach((emp: any) => expect(emp.branchId).toBe(branchId));
+    expect(Array.isArray(res.body.data)).toBe(true);
+    res.body.data.forEach((emp: any) => expect(emp.branchId).toBe(branchId));
   });
   
   //return an error if provided id is missing
@@ -160,8 +160,8 @@ describe("Employee Routes", () => {
 
     // Assert
     expect(res.status).toBe(200);
-    expect(Array.isArray(res.body)).toBe(true);
-    res.body.forEach((emp: any) => expect(emp.department.toLowerCase()).toBe(department.toLowerCase()));
+    expect(Array.isArray(res.body.data)).toBe(true);
+    res.body.data.forEach((emp: any) => expect(emp.department.toLowerCase()).toBe(department.toLowerCase()));
   });
 
   // return error when department is missing
@@ -175,7 +175,3 @@ describe("Employee Routes", () => {
   });
 
 });
-
-
-
-
