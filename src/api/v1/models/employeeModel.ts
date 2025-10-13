@@ -1,6 +1,6 @@
 //Employee data Model
 export interface Employee{
-    id: number;
+    id: Number;
     name: string;
     position: string;
     department: string;
