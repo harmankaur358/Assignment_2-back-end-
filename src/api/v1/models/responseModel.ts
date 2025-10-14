@@ -13,7 +13,7 @@ export interface ApiResponse<T> {
 // Creates a success response object
 export const successResponse = <T>(
     data?: T ,
-    message?: string
+    message: string = "Success"
 ): ApiResponse<T> => ({
     status: "success",
     data,
@@ -22,10 +22,10 @@ export const successResponse = <T>(
 
 //Creates a error response object
 export const errorResponse = <T>(
-    data?: T ,
-    message?: string 
+    message: string = "Error",
+    error?: string
 ): ApiResponse<T> => ({
     status: "error",
-    data,
+    error,
     message,
 });

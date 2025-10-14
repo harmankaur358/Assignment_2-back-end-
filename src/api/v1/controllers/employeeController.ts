@@ -36,6 +36,7 @@ export const getAllEmployees = async (_: Request, res: Response, next: NextFunct
   res.status(200).json(successResponse(employees))
   }
   catch(error: unknown) {
+    res.status(500).json(errorResponse("Failed to get employees"));
     next(error);
   }
 };
