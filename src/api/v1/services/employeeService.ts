@@ -18,7 +18,7 @@ export const getEmployeeById = async (id: string): Promise<Employee | null> => {
   return doc ? { id: doc.id, ...(doc.data() as Omit<Employee, "id">) } : null;
 };
 
-// Create employee (supports optional custom ID)
+// Create employee 
 export const createEmployee = async (
   data: Omit<Employee, "id"> & { id?: string }
 ): Promise<{ message: string; id: string }> => {

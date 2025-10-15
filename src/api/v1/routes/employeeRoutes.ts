@@ -9,12 +9,14 @@ import {
   getEmployeesByBranch,
   getEmployeesByDepartment
 } from "../controllers/employeeController";
+import * as schema from "../validation/employeeValidation"
+import {validateRequest} from "../middleware/validation"
 
 
 const router = Router();
 
 //Create a new employee
-router.post("/", createEmployee);
+router.post("/", validateRequest(schema.createemployeeSchema), createEmployee);
 
 //Get all employees
 router.get("/", getAllEmployees);
@@ -23,7 +25,7 @@ router.get("/", getAllEmployees);
 router.get("/:id", getEmployeeById);
 
 //Update an employee 
-router.put("/:id", updateEmployee);
+router.put("/:id", validateRequest(schema.updateemployeeSchema, "body"),updateEmployee);
 
 //Delete a employee
 router.delete("/:id",deleteEmployee);
