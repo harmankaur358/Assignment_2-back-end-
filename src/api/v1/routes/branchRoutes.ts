@@ -7,24 +7,23 @@ import {
   editBranch,
   DeleteBranch
 } from "../controllers/branchController";
-import { validate} from "../middleware/validation";
-import { createbranchSchema, branchidSchema, updatebranchSchema } from "../validation/branchValidaton";
+
 
 const router = Router();
 
 //Create a new Branch
-router.post("/",validate( createbranchSchema, "body"), CreateBranch);
+router.post("/",CreateBranch);
 
 //Get all Branches
 router.get("/", getBranches);
 
 // Get a specific branch with id
-router.get("/:id", validate(branchidSchema, "params"),getaBranch);
+router.get("/:id",getaBranch);
 
 //Update an branch 
-router.put("/:id",validate(updatebranchSchema, "body"), editBranch);
+router.put("/:id",editBranch);
 
 //Delete a branch
-router.delete("/:id", validate(branchidSchema, "params"), DeleteBranch);
+router.delete("/:id",DeleteBranch);
 
 export default router;

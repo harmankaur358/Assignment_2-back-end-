@@ -4,7 +4,7 @@
  */
 export interface ApiResponse<T> {
     status: string;
-    data?: T;
+    data?: T | null;
     message?: string;
     error?: string;
     code?: string;

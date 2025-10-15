@@ -4,6 +4,7 @@ import Joi from "joi";
 // Employee Schema 
 
 export const createemployeeSchema = Joi.object({
+  id: Joi.string().alphanum().optional(),
   name: Joi.string().min(2).max(50).required(),
   position: Joi.string().required(),
   department: Joi.string().min(2).max(45).required(),
@@ -13,6 +14,7 @@ export const createemployeeSchema = Joi.object({
 });
 
 export const updateemployeeSchema = Joi.object({
+  id: Joi.string().alphanum().optional(),
   name: Joi.string().min(2).max(50),
   position: Joi.string(),
   department: Joi.string().min(2).max(45),
@@ -22,5 +24,5 @@ export const updateemployeeSchema = Joi.object({
 });
 
 export const employeeidSchema = Joi.object({
-  id: Joi.number().integer().positive().required(),
+  id: Joi.string().required(),
 });

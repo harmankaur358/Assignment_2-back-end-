@@ -1,17 +1,13 @@
 import { Request, Response, NextFunction } from "express";
 import Joi from "joi";
-
-export const validate = (schema: Joi.ObjectSchema, source: "body" | "params" = "body") => {
+ 
+export const validateRequest = (schema: Joi.ObjectSchema, property: "body" | "params" = "body") => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const data = source === "body" ? req.body : req.params;
-    const { error } = schema.validate(data, { abortEarly: false });
-
+    const { error } = schema.validate(req[property]);
     if (error) {
-      return res.status(400).json({
-        message: "Validation failed.Please try again",
-        details: error.details.map((d) => d.message),
-      });
+      return res.status(400).json({ message: error.details[0].message });
     }
     next();
   };
 };
+ 

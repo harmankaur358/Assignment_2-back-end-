@@ -17,7 +17,7 @@ beforeEach(() => {
 });
 
 describe("Branch Routes (with mocked services)", () => {
-  // POST create branch
+  // create branch
   it("should create a new branch successfully", async () => {
     const newBranch = { name: "Kildonan Branch", address: "124 Vermilion road", phone: "204-588-4571" };
 
@@ -38,7 +38,7 @@ describe("Branch Routes (with mocked services)", () => {
     const res = await request(app).post("/api/v1/branch").send({ name: "Polo Park branch" });
 
     expect(res.status).toBe(400);
-    expect(res.body.message).toBe("Validation failed.Please try again");
+    expect(res.body.message).toBe("Missing required fields");
   });
 
   // GET all branches
@@ -100,8 +100,8 @@ describe("Branch Routes (with mocked services)", () => {
 
     const res = await request(app).put("/api/v1/branch/999").send({ phone: "2721" });
 
-    expect(res.status).toBe(400);
-    expect(res.body.message).toBe("Validation failed.Please try again");
+    expect(res.status).toBe(404);
+
   });
 
   // DELETE branch

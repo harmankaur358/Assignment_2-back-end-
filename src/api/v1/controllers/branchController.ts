@@ -17,10 +17,10 @@ export const getBranches = async (_req: Request, res: Response, next:NextFunctio
 //Get a specific branch
 export const getaBranch = async (req: Request, res: Response, next: NextFunction) => {
   try{
-  const id = Number(req.params.id);
-  if (isNaN(id)) {
-  return res.status(400).json(errorResponse("Invalid branch ID"));}
-
+  const id = req.params.id;
+  if (!id) {
+      return res.status(400).json(errorResponse("Branch ID is required"));
+    }
   const branch =  await branchservices.getBranchById(id);
  
   if (!branch) return res.status(404).json(errorResponse("Branch not found"));
@@ -53,11 +53,8 @@ export const CreateBranch = async (req: Request, res: Response,next:NextFunction
 //Updating an existing branch
 export const editBranch = async(req: Request, res: Response,next: NextFunction) => {
   try{
-  const id = Number(req.params.id);
-  if (isNaN(id)) {
-  return res.status(400).json(errorResponse(undefined, "Invalid branch ID"));
-  }
-
+  const id = req.params.id;
+  
   const branch = await branchservices.updateBranch(id, req.body);
  
   if (!branch) return res.status(404).json(errorResponse(undefined , "Branch not found"));
@@ -72,11 +69,7 @@ export const editBranch = async(req: Request, res: Response,next: NextFunction) 
 //Delete a branch
 export const DeleteBranch = async (req: Request, res: Response, next: NextFunction) => {
   try{
-  const id = Number(req.params.id);
-  if (isNaN(id)) {
-  return res.status(400).json(errorResponse("Invalid branch ID"));
-  }
-
+  const id = req.params.id;
   const success =  await branchservices.deleteBranch(id);
  
   if (!success) return res.status(404).json(errorResponse("Branch not found"));
