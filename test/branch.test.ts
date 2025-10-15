@@ -19,6 +19,7 @@ beforeEach(() => {
 describe("Branch Routes (with mocked services)", () => {
   // create branch
   it("should create a new branch successfully", async () => {
+    //Arrange
     const newBranch = { name: "Kildonan Branch", address: "124 Vermilion road", phone: "204-588-4571" };
 
     (branchService.createBranch as jest.Mock).mockResolvedValue({
@@ -27,58 +28,72 @@ describe("Branch Routes (with mocked services)", () => {
       ...newBranch,
     });
 
+    //Act
     const res = await request(app).post("/api/v1/branch").send(newBranch);
 
+    //Assert
     expect(res.status).toBe(201);
     expect(res.body.message).toBe("Branch added successfully");
     expect(res.body.data.name).toBe(newBranch.name);
   });
 
   it("should return 400 when required fields are missing", async () => {
+    //Arrange & Act
     const res = await request(app).post("/api/v1/branch").send({ name: "Polo Park branch" });
 
+    //Assert
     expect(res.status).toBe(400);
     expect(res.body.message).toBe("Missing required fields");
   });
 
-  // GET all branches
+  // Get all branches
   it("should return all branches", async () => {
+    //Arrange
     (branchService.getAllBranches as jest.Mock).mockResolvedValue([
       { id: 1, name: "Branch A" },
       { id: 2, name: "Branch B" },
     ]);
 
+    //Act
     const res = await request(app).get("/api/v1/branch");
 
+    //Assert
     expect(res.status).toBe(200);
     expect(Array.isArray(res.body.data)).toBe(true);
     expect(res.body.data.length).toBe(2);
   });
 
-  // GET branch by ID
+  // Get branch by ID
   it("should return a branch by ID", async () => {
+    //Arrange
     (branchService.getBranchById as jest.Mock).mockResolvedValue({
       id: 1,
       name: "Branch A",
     });
 
+    //Act
     const res = await request(app).get("/api/v1/branch/1");
 
+    //Assert
     expect(res.status).toBe(200);
     expect(res.body.data).toHaveProperty("id", 1);
   });
 
   it("should return 404 if branch not found", async () => {
+    //Arrange
     (branchService.getBranchById as jest.Mock).mockResolvedValue(null);
 
+    //Act
     const res = await request(app).get("/api/v1/branch/999");
 
+    //Assert
     expect(res.status).toBe(404);
     expect(res.body.message).toBe("Branch not found");
   });
 
-  // PUT update branch
+  //  update branch
   it("should update a branch successfully", async () => {
+    //Arrange
     const updatedBranch = { phone: "999-888-7777" };
 
     (branchService.updateBranch as jest.Mock).mockResolvedValue({
@@ -88,37 +103,48 @@ describe("Branch Routes (with mocked services)", () => {
       message: "Branch updated",
     });
 
+    //Act
     const res = await request(app).put("/api/v1/branch/1").send(updatedBranch);
 
+    //Assert
     expect(res.status).toBe(200);
     expect(res.body.message).toBe("Branch updated");
     expect(res.body.data.phone).toBe(updatedBranch.phone);
   });
 
   it("should return 400 if updating non-existing branch", async () => {
+    //Arrange
     (branchService.updateBranch as jest.Mock).mockResolvedValue(false);
 
+    //Act
     const res = await request(app).put("/api/v1/branch/999").send({ phone: "2721" });
 
+    //Assert
     expect(res.status).toBe(404);
 
   });
 
   // DELETE branch
   it("should delete a branch successfully", async () => {
+    //Arrange
     (branchService.deleteBranch as jest.Mock).mockResolvedValue(true);
 
+    //Act
     const res = await request(app).delete("/api/v1/branch/1");
 
+    //Assert
     expect(res.status).toBe(200);
     expect(res.body.message).toBe("Branch deleted successfully");
   });
 
   it("should return 404 when deleting non-existing branch", async () => {
+    //Arrange
     (branchService.deleteBranch as jest.Mock).mockResolvedValue(false);
 
+    //Act
     const res = await request(app).delete("/api/v1/branch/999");
 
+    //Assert
     expect(res.status).toBe(404);
     expect(res.body.message).toBe("Branch not found");
   });
