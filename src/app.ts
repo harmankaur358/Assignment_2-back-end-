@@ -1,5 +1,11 @@
 //Import statements
 import express, {Request, Response, Express } from "express";
+import dotenv from "dotenv";
+
+//Load environment variables
+dotenv.config()
+
+//Other imports
 import morgan from "morgan";
 import employeeRoutes from "./api/v1/routes/employeeRoutes";  
 import branchRoutes from "./api/v1/routes/branchRoutes";
