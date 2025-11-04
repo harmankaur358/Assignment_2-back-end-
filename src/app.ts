@@ -34,4 +34,5 @@ app.use("/api/v1/branch", branchRoutes)
 //Setup swagger
 setupSwagger(app)
 
+//Exporting app
 export default app;
