@@ -28,6 +28,61 @@ const swaggerOptions: swaggerJsdoc.Options = {
                     description: "Enter your JWT token for authentication",
                 },
             },
+
+            // Added schemas to fix Redocly "Invalid reference token: schemas"
+            schemas: {
+                Branch: {
+                    type: "object",
+                    properties: {
+                        id: { type: "string", example: "b123" },
+                        name: { type: "string", example: "Head Office" },
+                        location: { type: "string", example: "London" },
+                    },
+                },
+                CreateBranch: {
+                    type: "object",
+                    required: ["name", "location"],
+                    properties: {
+                        name: { type: "string", example: "Regional Office" },
+                        location: { type: "string", example: "Toronto" },
+                    },
+                },
+                UpdateBranch: {
+                    type: "object",
+                    properties: {
+                        name: { type: "string", example: "Updated Office" },
+                        location: { type: "string", example: "Vancouver" },
+                    },
+                },
+                Employee: {
+                    type: "object",
+                    properties: {
+                        id: { type: "string", example: "e123" },
+                        name: { type: "string", example: "John Doe" },
+                        position: { type: "string", example: "Manager" },
+                        department: { type: "string", example: "HR" },
+                        branchId: { type: "string", example: "b123" },
+                    },
+                },
+                CreateEmployee: {
+                    type: "object",
+                    required: ["name", "position", "department", "branchId"],
+                    properties: {
+                        name: { type: "string", example: "Jane Smith" },
+                        position: { type: "string", example: "Developer" },
+                        department: { type: "string", example: "IT" },
+                        branchId: { type: "string", example: "b123" },
+                    },
+                },
+                UpdateEmployee: {
+                    type: "object",
+                    properties: {
+                        name: { type: "string", example: "Jane Updated" },
+                        position: { type: "string", example: "Senior Developer" },
+                        department: { type: "string", example: "IT" },
+                    },
+                },
+            },
         },
         security: [
             {
