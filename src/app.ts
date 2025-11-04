@@ -9,6 +9,7 @@ dotenv.config()
 import morgan from "morgan";
 import employeeRoutes from "./api/v1/routes/employeeRoutes";  
 import branchRoutes from "./api/v1/routes/branchRoutes";
+import setupSwagger from "config/swagger";
 
 //Express app created 
 const app: Express = express();
@@ -29,5 +30,8 @@ app.use("/api/v1/employee", employeeRoutes)
 
 //Branch endpoint
 app.use("/api/v1/branch", branchRoutes)
+
+//Setup swagger
+setupSwagger(app)
 
 export default app;
