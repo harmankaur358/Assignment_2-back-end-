@@ -27,7 +27,7 @@ import Joi from "joi";
  *           type: string
  *           minLength: 5
  *           description: Physical address of the branch
- *           example: "123 Main St, Toronto"
+ *           example: "123 Main St, Winnipeg"
  *         phone:
  *           type: string
  *           pattern: "^\d{3}-\d{3}-\d{4}$"
