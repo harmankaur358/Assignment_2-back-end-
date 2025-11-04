@@ -17,7 +17,7 @@ export const getAllBranches = async (): Promise<Branch[]> => {
 // Get branch by ID
 export const getBranchById = async (id: string): Promise<Branch | null> => {
   try {
-    const one_branch = await firestoreRepository.getDocumentById(COLLECTION, id.toString());
+    const one_branch = await firestoreRepository.getDocumentById(COLLECTION, id);
     return one_branch ? { id: one_branch.id, ...(one_branch.data() as Omit<Branch, "id">) } : null;
   } catch {
     throw new Error(`Unable to get branch with id :${id}`);
@@ -37,7 +37,7 @@ export const createBranch = async (data: Omit<Branch, "id">): Promise<{ message:
 // Update a branch
 export const updateBranch = async (id: string, updates: Partial<Branch>): Promise<string> => {
   try {
-    await firestoreRepository.updateDocument<Branch>(COLLECTION, id.toString(), updates);
+    await firestoreRepository.updateDocument<Branch>(COLLECTION, id, updates);
     return "Branch updated successfully";
   } catch {
     throw new Error(`Unable to update branch with id: ${id}`);
@@ -47,7 +47,7 @@ export const updateBranch = async (id: string, updates: Partial<Branch>): Promis
 // Delete a branch
 export const deleteBranch = async (id: string): Promise<string> => {
   try {
-    await firestoreRepository.deleteDocument(COLLECTION, id.toString());
+    await firestoreRepository.deleteDocument(COLLECTION, id);
     return "Branch deleted successfully";
   } catch {
     throw new Error(`Unable to delete branch with id: ${id}`);
