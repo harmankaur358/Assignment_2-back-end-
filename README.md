@@ -26,3 +26,38 @@ SWAGGER_SERVER_URL="swagger_server_url"
 5: When the server starts, you can access the endpoints at: 
 For employee: http://localhost:3000/api/vi/employee
 For branch: http://localhost:3000/api/vi/branch
+
+# API request examples
+
+Example 1: GET employee/
+curl --location --request GET 'http://localhost:3000/api/v1/employee/' \
+--header 'Content-Type: application/json' \
+--data-raw '{"name": "Harman Kaur",
+"position": "Student",
+"department": "IT",
+"email": "harman.kaur@gmail.com",
+"phone": "2045884571",
+"branchId": 1
+}'
+
+Example 2: POST employee/
+curl --location 'http://localhost:3000/api/v1/employee/' \
+--header 'Content-Type: application/json' \
+--data-raw '{"name": "Harman Kaur",
+"position": "Student",
+"department": "IT",
+"email": "harman.kaur@gmail.com",
+"phone": "204-588-4571",
+"branchId": 1
+}'
+
+Example 3: GET branch/
+curl --location --request GET 'http://localhost:3000/api/v1/branch' \
+--header 'Content-Type: application/json' \
+--data-raw '{"name": "Harman Kaur",
+"position": "Student",
+"department": "IT",
+"email": "harman.kaur@gmail.com",
+"phone": "204-588-4571",
+"branchId": 1
+}'
