@@ -29,7 +29,7 @@ const swaggerOptions: swaggerJsdoc.Options = {
                 },
             },
 
-            // Added schemas to fix Redocly "Invalid reference token: schemas"
+            // Added schemas 
             schemas: {
                 Branch: {
                     type: "object",
