@@ -61,3 +61,11 @@ curl --location --request GET 'http://localhost:3000/api/v1/branch' \
 "phone": "204-588-4571",
 "branchId": 1
 }'
+
+# Link to Public Documentation
+You can access all the detialed information about all endpoints at https://harmankaur358.github.io/Assignment_2-back-end-/
+
+# Local Documentation access
+1: Start your server by using npm start command
+2: Open the browser and visit at http://localhost:3000/api-docs/
+3: You will be successfully able to access the all endpoints of employee and branch as well as the schemas.
